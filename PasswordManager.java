@@ -11,6 +11,14 @@ public class PasswordManager {
         }
     }
 
+    public boolean findUsername(String username) {
+        if (username_password.containsKey(username)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void addUser(String username, String password) {
         username_password.put(username, password);
     }

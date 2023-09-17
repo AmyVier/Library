@@ -6,7 +6,8 @@ import java.io.ObjectOutputStream;
 
 public class Main {
     public static void main(String [] args) {
-        MainWindow.create();
+       //MainWindow.create();
+        Search.create();
 
 
         Book newBook = new Book("HEY");

@@ -35,13 +35,20 @@ public class Search {
         window.setVisible(true);
 
         search_title.addActionListener((ActionEvent e) -> {
+            while (!(buttons.isEmpty())) {
+                window.remove(buttons.get(0));
+                buttons.remove(0);
+            }
+
+            window.repaint();
+
             int i = 0;
             if (search_title.getText().length() > 0) {
+
                 for (Map.Entry<String, Book> set : bookTitles.entrySet()) {
                     if (set.getKey().length() >= search_title.getText().length() && 
                     set.getKey().substring(0, search_title.getText().length()).
                     equals(search_title.getText())) {
-                        System.out.println(set.getKey());
                         buttons.add(new JButton(set.getKey()));
                         window.add(buttons.get(i));
                         buttons.get(i++).setBounds(350, i * 40, 100, 40);

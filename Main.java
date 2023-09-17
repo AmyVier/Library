@@ -7,10 +7,14 @@ import java.io.ObjectOutputStream;
 public class Main {
     public static void main(String [] args) {
        //MainWindow.create();
-        Search.create();
+        //Search.create();
 
 
         Book newBook = new Book("HEY");
+        newBook.setDescription("GFYU UYGE GYUGYUYGGYUGYUYGU GYUGUUYG");
+        newBook.setPicture("NoCover.png");
+
+        BookInformation.create(newBook);
         
         LibraryOfBooks new_library = new LibraryOfBooks();
         new_library.addBook(newBook);

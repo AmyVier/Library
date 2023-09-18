@@ -2,9 +2,15 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class MainWindow {
+
+  private static JFrame window = new JFrame("Menu");
+
     public static void create() {
-        JFrame window = new JFrame ("Menu");
         window.setLayout(null);
+
+        JButton admin = new JButton("admin");
+        window.add(admin);
+        admin.setBounds(350,500,100,40);
 
         JButton logIn = new JButton("LogIn");
         window.add(logIn);
@@ -28,8 +34,18 @@ public class MainWindow {
 
         logIn.addActionListener((ActionEvent e) -> {
           if (users.findUser(username.getText(), password.getText())) {
-            System.out.println("HELL YEAH");
+            window.dispose();
+            Search.create();
           }
         });
+
+        admin.addActionListener((ActionEvent e) -> {
+          window.dispose();
+          AdminPage.create();
+        });
+    }
+
+    public static void setVisible() {
+      window.setVisible(true);
     }
 }

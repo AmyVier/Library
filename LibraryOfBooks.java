@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.HashMap;
 
-public class LibraryOfBooks implements Serializable{
+public class LibraryOfBooks implements Serializable, Cloneable {
     private HashSet<Book> books = new HashSet<>();
 
     public HashSet<Book> getBooks() {
@@ -26,4 +26,20 @@ public class LibraryOfBooks implements Serializable{
     public void addBook(Book book) {
         books.add(book);
     }
+
+    @Override
+    public LibraryOfBooks clone() {
+        LibraryOfBooks copy = new LibraryOfBooks();
+
+        if (books == null) {
+            return copy;
+        }
+
+        this.getBooks().forEach((book) -> {
+            copy.addBook(book);
+        });
+
+        return copy;
+    }
+
 }

@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 public class PasswordManager {
-    HashMap<String, String> username_password= new HashMap<>();
+    private HashMap<String, String> username_password= new HashMap<>();
 
     public boolean findUser(String username, String password) {
         if (username_password.containsKey(username) && username_password.get(username).equals(password)) {

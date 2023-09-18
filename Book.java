@@ -21,7 +21,11 @@ public class Book implements Serializable{
     }
 
     public String getPicture () {
-        return this.picture;
+        if (this.picture.length() > 0) {
+            return this.picture;
+        }
+
+        return "NoCover.png";
     }
 
     public String getPublishDate () {

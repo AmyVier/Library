@@ -7,8 +7,10 @@ import java.awt.event.*;
 
 public class BookInformation {
 
+    private static JFrame window = new JFrame();
+
     public static void create(Book bookInfo) {
-        JFrame window = new JFrame (bookInfo.getTitle());
+        window.setTitle(bookInfo.getTitle());
         window.setLayout(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -22,7 +24,6 @@ public class BookInformation {
         window.add(plot);
         plot.setBounds(200, 100, 50, 50);
 
-
         JButton back = new JButton("Go Back");
         window.add(back);
         back.setBounds(350,400,100,40);
@@ -30,8 +31,13 @@ public class BookInformation {
         window.setVisible(true);
 
         back.addActionListener((ActionEvent e) -> {
-            
+            window.dispose();
+            Search.setVisible();
         });
+    }
+
+    public static void setVisible() {
+        window.setVisible(true);
     }
 
 }

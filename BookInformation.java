@@ -2,7 +2,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import java.awt.event.*;
 
 public class BookInformation {
@@ -29,6 +28,7 @@ public class BookInformation {
         back.setBounds(350,400,100,40);
 
         window.setVisible(true);
+        window.setSize(800,800);
 
         back.addActionListener((ActionEvent e) -> {
             window.dispose();

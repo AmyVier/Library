@@ -29,20 +29,26 @@ public class MainWindow {
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        PasswordManager users = new PasswordManager();
-        users.addUser("AmyV", "LOL");
+        PasswordManager.addUser("AmyV", "LOL");
 
         logIn.addActionListener((ActionEvent e) -> {
-          if (users.findUser(username.getText(), password.getText())) {
+          if (PasswordManager.findUser(username.getText(), password.getText())) {
             window.dispose();
             Search.create();
+            clear(username, password);
           }
         });
 
         admin.addActionListener((ActionEvent e) -> {
           window.dispose();
           AdminPage.create();
+          clear(username, password);
         });
+    }
+
+    private static void clear(JTextField username, JTextField password) {
+      username.setText(null);
+      password.setText(null);
     }
 
     public static void setVisible() {

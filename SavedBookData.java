@@ -25,7 +25,7 @@ public class SavedBookData {
             out.close();
             file.close();
         } catch(IOException ex) {
-            System.out.println("IOException is caught");
+            System.out.println("IOException is caught in save");
         }
 
         allBooks = updated.clone();

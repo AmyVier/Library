@@ -1,10 +1,10 @@
 import java.awt.event.ActionEvent;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 public class AdminPage {
+
     private static JFrame window = new JFrame("Search");
 
     public static void create() {
@@ -31,7 +31,7 @@ public class AdminPage {
         description.setBounds(350,160, 100,40);  
         window.add(description);
 
-        JTextField date = new JTextField(16);  
+       JTextField date = new JTextField(16);  
         date.setBounds(350,200, 100,40);  
         window.add(date);
 
@@ -40,6 +40,7 @@ public class AdminPage {
         add.setBounds(350,240,100,40);
 
         window.setVisible(true);
+        window.setSize(800,800);
 
         SavedBookData.initialize();
         LibraryOfBooks updated_catalogue = SavedBookData.getBooks();
@@ -52,6 +53,9 @@ public class AdminPage {
             newBook.setPublishDate(date.getText());
 
             updated_catalogue.addBook(newBook);
+
+            clear(title, author, cover, description, date);
+
         });
 
         back.addActionListener((ActionEvent e) -> {
@@ -59,6 +63,18 @@ public class AdminPage {
             Search.update();
             window.dispose();
             MainWindow.setVisible();
+
+            clear(title, author, cover, description, date);
+
         });
+    }
+    
+    private static void clear(JTextField title, JTextField author, 
+    JTextField cover, JTextField description, JTextField date) {
+        title.setText(null);
+        author.setText(null);
+        cover.setText(null);
+        description.setText(null);
+        date.setText(null);
     }
 }

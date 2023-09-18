@@ -1,7 +1,6 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-
 import java.awt.event.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +11,7 @@ public class Search {
     private static JFrame window = new JFrame("Search");
     private static LibraryOfBooks books  = null;
     private static HashMap <String, Book> bookTitles = null;
+    private static ArrayList <JButton> buttons = new ArrayList<>();
 
     public static void create() {
         window.setLayout(null);
@@ -25,11 +25,10 @@ public class Search {
         search_title.setBounds(350,0, 100,40);  
         window.add(search_title);
 
-        ArrayList <JButton> buttons = new ArrayList<>();
-
         update();
 
         window.setVisible(true);
+        window.setSize(800,800);
 
         back.addActionListener((ActionEvent e) -> {
             window.dispose();
@@ -58,6 +57,7 @@ public class Search {
                         buttons.get(i).addActionListener((ActionEvent l) -> {
                             window.setVisible(false);
                             BookInformation.create(set.getValue());
+                            clear(search_title);
                         });
 
                         buttons.get(i++).setBounds(350, i * 40, 100, 40);
@@ -66,6 +66,15 @@ public class Search {
                 }
             }
         });
+    }
+
+    private static void clear (JTextField search_title) {
+        while (!(buttons.isEmpty())) {
+            window.remove(buttons.get(0));
+            buttons.remove(0);
+        }
+
+        search_title.setText(null);
     }
 
     public static void update () {

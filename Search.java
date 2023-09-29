@@ -71,7 +71,7 @@ public class Search {
                     //if the title is partially similar show title
                     if (set.getKey().length() >= search_title.getText().length() &&
                             set.getKey().substring(0, search_title.getText().length()).
-                            equals(search_title.getText())) {
+                            equalsIgnoreCase(search_title.getText())) {
 
                         buttons.add(new JButton(set.getKey()));
                         window.add(buttons.get(i));

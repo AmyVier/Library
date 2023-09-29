@@ -43,7 +43,7 @@ public class SavedBookData {
             out.close();
             file.close();
         } catch(IOException ex) {
-            System.out.println("IOException is caught in save");
+            System.out.println("IOException is caught in save " + ex);
         }
 
         allBooks = updated.clone();
@@ -62,9 +62,9 @@ public class SavedBookData {
             in.close();
             file.close();
         } catch(IOException ex) {
-            System.out.println("IOException is caught");
+            System.out.println("IOException is caught in initialize " + ex);
         } catch(ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException is caught");
+            System.out.println("ClassNotFoundException is caught in initialize " + ex);
         }
     }
 }

@@ -11,6 +11,7 @@ import java.awt.event.*;
 public class MainWindow {
 
   private static JFrame window = new JFrame("Menu");
+  private static PasswordManager users = null; //where user data is stores
 
   /**
    * Creates Main Window of library for user login.
@@ -35,6 +36,10 @@ public class MainWindow {
     username.setBounds(350, 300, 100, 40);
     window.add(username);
 
+    JButton newUser = new JButton("new?");
+    newUser.setBounds(350, 250, 100, 40);
+    window.add(newUser);
+
     window.setSize(800, 800);
     window.setVisible(true);
 
@@ -42,17 +47,26 @@ public class MainWindow {
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     // for debugging
-    PasswordManager.addUser("AmyV", "LOL");
+    //users.addUser("AmyV", "LOL");
+
+    update();
 
     // enter right username/password, go into search window, else redo input
     logIn.addActionListener((ActionEvent e) -> {
-      if (PasswordManager.findUser(username.getText(), password.getText())) {
+      if (users.findUser(username.getText(), password.getText())) {
         window.dispose();
         Search.create();
         clear(username, password);
       } else {
         clear(username, password);
       }
+    });
+
+    // enter user creation page
+    newUser.addActionListener((ActionEvent e) -> {
+      window.dispose();
+      CreateUser.create();
+      clear(username, password);
     });
 
     // enter admin page
@@ -72,6 +86,14 @@ public class MainWindow {
   private static void clear(JTextField username, JTextField password) {
     username.setText(null);
     password.setText(null);
+  }
+
+  /**
+     * updates user data
+     */
+    public static void update() {
+      SavedUserData.initialize();
+      users = SavedUserData.getUsers();
   }
 
   /**

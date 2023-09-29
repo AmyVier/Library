@@ -1,6 +1,5 @@
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.HashMap;
 
 /**
  * LibraryOfBooks class
@@ -22,20 +21,6 @@ public class LibraryOfBooks implements Serializable, Cloneable {
 
         books.forEach( book -> {
             books_copy.add(book);
-        });
-        return books_copy;
-    }
-
-    /**
-     * get titles of books with book info.
-     * 
-     * @return HashMap<String, Book> of book titles and books
-     */
-    public HashMap<String, Book> getTitles() {
-        HashMap<String, Book> books_copy = new HashMap<>();
-
-        books.forEach( book -> {
-            books_copy.put(book.getTitle(), book);
         });
         return books_copy;
     }

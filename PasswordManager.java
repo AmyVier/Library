@@ -1,15 +1,16 @@
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
- * LibraryOfBooks class
- * Description: stores books
+ * PasswordManager class
+ * Description: manages passwords
  *
  * @author (Amy Vier)
  * @version (September 29, 2023)
  */
-public class PasswordManager {
+public class PasswordManager implements Serializable, Cloneable{
     // user list
-    private static HashMap<String, String> username_password= new HashMap<>();
+    private  HashMap<String, String> username_password= new HashMap<>();
 
     /**
      * finds if the user provided with a password and a username exists within the PasswordManager
@@ -18,7 +19,7 @@ public class PasswordManager {
      * @param password String password
      * @return boolean if the user exists or not
      */
-    public static boolean findUser(String username, String password) {
+    public boolean findUser(String username, String password) {
         if (username_password.containsKey(username) && username_password.get(username).equals(password)) {
             return true;
         } else {
@@ -32,7 +33,7 @@ public class PasswordManager {
      * @param username String username
      * @return boolean if the user exists or not
      */
-    public static boolean findUsername(String username) {
+    public boolean findUsername(String username) {
         if (username_password.containsKey(username)) {
             return true;
         } else {
@@ -41,12 +42,32 @@ public class PasswordManager {
     }
 
     /**
-     * adds a user to ther PasswordManager
+     * adds a user to the PasswordManager
      * 
      * @param username String username
      * @param password String password
      */
-    public static void addUser(String username, String password) {
+    public void addUser(String username, String password) {
         username_password.put(username, password);
+    }
+
+    /**
+     * clones PasswordManager class
+     * 
+     * @return PasswordManager clone
+     */
+    @Override
+    public PasswordManager clone() {
+        PasswordManager copy = new PasswordManager();
+
+        if (username_password == null) {
+            return copy;
+        }
+
+        username_password.forEach((username, password) -> {
+            copy.addUser(username, password);
+        });
+
+        return copy;
     }
 }

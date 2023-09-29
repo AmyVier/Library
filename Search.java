@@ -2,9 +2,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import java.awt.event.*;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Search class
@@ -17,7 +16,7 @@ public class Search {
 
     private static JFrame window = new JFrame("Search");
     private static LibraryOfBooks books = null; //where book data is stores
-    private static HashMap<String, Book> bookTitles = null; //titles directing to book data
+    private static HashSet<Book> bookList = null; //titles directing to book data
     private static ArrayList<JButton> buttons = new ArrayList<>(); //buttons directing to book windows
 
     /**
@@ -66,20 +65,20 @@ public class Search {
             if (search_title.getText().length() > 0) {
 
                 //look through every title
-                for (Map.Entry<String, Book> set : bookTitles.entrySet()) {
+                for (Book book : bookList) {
 
                     //if the title is partially similar show title
-                    if (set.getKey().length() >= search_title.getText().length() &&
-                            set.getKey().substring(0, search_title.getText().length()).
+                    if (book.getTitle().length() >= search_title.getText().length() &&
+                            book.getTitle().substring(0, search_title.getText().length()).
                             equalsIgnoreCase(search_title.getText())) {
 
-                        buttons.add(new JButton(set.getKey()));
+                        buttons.add(new JButton(book.getTitle()));
                         window.add(buttons.get(i));
 
                         //add a book window
                         buttons.get(i).addActionListener((ActionEvent l) -> {
                             window.setVisible(false);
-                            BookInformation.create(set.getValue()); // create window based on book info
+                            BookInformation.create(book); // create window based on book info
                             clear(search_title);
                         });
 
@@ -112,7 +111,7 @@ public class Search {
     public static void update() {
         SavedBookData.initialize();
         books = SavedBookData.getBooks();
-        bookTitles = books.getTitles();
+        bookList = books.getBooks();
     }
 
     /**

@@ -17,6 +17,8 @@ public class CreateUser {
     public static void create() {
         // you can close this application from admin page
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        window.setLayout(null);
 
         // initializing window components
         JButton back = new JButton("Back");
@@ -35,6 +37,10 @@ public class CreateUser {
         username.setBounds(350, 300, 100, 40);
         window.add(username);
 
+        JLabel status = new JLabel("");
+        status.setBounds(350, 250, 100, 40);
+        window.add(status);
+
         window.setSize(800, 800);
         window.setVisible(true);
 
@@ -46,9 +52,9 @@ public class CreateUser {
         create.addActionListener((ActionEvent e) -> {
             if (updated_user_list.findUsername(username.getText()) == false) {
                 updated_user_list.addUser(username.getText(), password.getText());
-                clear(username, password);
+                clear(username, password, status);
             } else {
-                clear(username, password);
+                status.setText("Username already exists");
              }
         });
 
@@ -60,7 +66,7 @@ public class CreateUser {
             MainWindow.setVisible();
             MainWindow.update();
 
-            clear(username, password);
+            clear(username, password, status);
         });
         
 
@@ -72,8 +78,9 @@ public class CreateUser {
      * @param username JTextField username
      * @param password JTextField password
      */
-    private static void clear(JTextField username, JTextField password) {
+    private static void clear(JTextField username, JTextField password, JLabel status) {
         username.setText(null);
         password.setText(null);
+        status.setText(null);
     }
 }

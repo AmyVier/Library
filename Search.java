@@ -6,60 +6,84 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 
+/**
+ * Search class
+ * Description: Search Window of library
+ *
+ * @author (Amy Vier)
+ * @version (September 29, 2023)
+ */
 public class Search {
 
     private static JFrame window = new JFrame("Search");
-    private static LibraryOfBooks books  = null;
-    private static HashMap <String, Book> bookTitles = null;
-    private static ArrayList <JButton> buttons = new ArrayList<>();
+    private static LibraryOfBooks books = null; //where book data is stores
+    private static HashMap<String, Book> bookTitles = null; //titles directing to book data
+    private static ArrayList<JButton> buttons = new ArrayList<>(); //buttons directing to book windows
 
+    /**
+   * Creates Main Window of search, allowing the user to search for books
+   */
     public static void create() {
         window.setLayout(null);
+
+        //you can close this application from search window
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // initializing window components
         JButton back = new JButton("Go Back");
         window.add(back);
-        back.setBounds(350,400,100,40);
+        back.setBounds(350, 400, 100, 40);
 
-        JTextField search_title = new JTextField(16);  
-        search_title.setBounds(350,0, 100,40);  
+        JTextField search_title = new JTextField(16);
+        search_title.setBounds(350, 0, 100, 40);
         window.add(search_title);
 
-        update();
-
         window.setVisible(true);
-        window.setSize(800,800);
+        window.setSize(800, 800);
+
+        //update book data (if some books were added/removed)
+        update();
 
         back.addActionListener((ActionEvent e) -> {
             window.dispose();
             MainWindow.create();
         });
 
+        //go back to previous page
         search_title.addActionListener((ActionEvent e) -> {
+            //get rid of search results/buttons from previous search
             while (!(buttons.isEmpty())) {
                 window.remove(buttons.get(0));
                 buttons.remove(0);
             }
 
+            //show changes to the window (if some buttons were removed)
             window.repaint();
 
-            int i = 0;
+            int i = 0;// location of button in terms of y axis
+
+            //if there is input look for seach results
             if (search_title.getText().length() > 0) {
 
+                //look through every title
                 for (Map.Entry<String, Book> set : bookTitles.entrySet()) {
-                    if (set.getKey().length() >= search_title.getText().length() && 
-                    set.getKey().substring(0, search_title.getText().length()).
-                    equals(search_title.getText())) {
+
+                    //if the title is partially similar show title
+                    if (set.getKey().length() >= search_title.getText().length() &&
+                            set.getKey().substring(0, search_title.getText().length()).
+                            equals(search_title.getText())) {
 
                         buttons.add(new JButton(set.getKey()));
                         window.add(buttons.get(i));
 
+                        //add a book window
                         buttons.get(i).addActionListener((ActionEvent l) -> {
                             window.setVisible(false);
-                            BookInformation.create(set.getValue());
+                            BookInformation.create(set.getValue()); // create window based on book info
                             clear(search_title);
                         });
 
+                        //every button is 40 pixles down from one another
                         buttons.get(i++).setBounds(350, i * 40, 100, 40);
 
                     }
@@ -68,7 +92,12 @@ public class Search {
         });
     }
 
-    private static void clear (JTextField search_title) {
+    /**
+     * remove all search results and text in the seach bar
+     * 
+     * @param search_title JTextField search bar
+     */
+    private static void clear(JTextField search_title) {
         while (!(buttons.isEmpty())) {
             window.remove(buttons.get(0));
             buttons.remove(0);
@@ -77,12 +106,18 @@ public class Search {
         search_title.setText(null);
     }
 
-    public static void update () {
+    /**
+     * updates book data
+     */
+    public static void update() {
         SavedBookData.initialize();
         books = SavedBookData.getBooks();
         bookTitles = books.getTitles();
     }
 
+    /**
+     * Sets the visibility of search window to true.
+     */
     public static void setVisible() {
         window.setVisible(true);
     }

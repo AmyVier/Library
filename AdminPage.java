@@ -3,14 +3,27 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+/**
+ * AdminPage class
+ * Description: Admin Page of library
+ *
+ * @author (Amy Vier)
+ * @version (September 29, 2023)
+ */
 public class AdminPage {
 
     private static JFrame window = new JFrame("Search");
 
+    /**
+   * Creates Admin Page of library to add books.
+   */
     public static void create() {
         window.setLayout(null);
+
+        // you can close this application from admin page
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // initializing window components
         JButton back = new JButton("Go Back");
         window.add(back);
         back.setBounds(350,400,100,40);
@@ -42,9 +55,11 @@ public class AdminPage {
         window.setVisible(true);
         window.setSize(800,800);
 
+        //initialize book data and retrieve data for changes
         SavedBookData.initialize();
-        LibraryOfBooks updated_catalogue = SavedBookData.getBooks();
+        LibraryOfBooks updated_catalogue = SavedBookData.getBooks(); // book data
 
+        //add book data
         add.addActionListener((ActionEvent e) -> {
             Book newBook = new Book(title.getText());
             newBook.addAuthors(author.getText());
@@ -55,20 +70,28 @@ public class AdminPage {
             updated_catalogue.addBook(newBook);
 
             clear(title, author, cover, description, date);
-
         });
 
+         //save all changes when go back to main window
         back.addActionListener((ActionEvent e) -> {
             SavedBookData.save(updated_catalogue);
-            Search.update();
+            Search.update(); //updata data for Search browser
             window.dispose();
             MainWindow.setVisible();
 
             clear(title, author, cover, description, date);
-
         });
     }
     
+    /**
+   * clears all textboxes.
+   * 
+   * @param title JTextField title textbox
+   * @param author JTextField author textbox
+   * @param cover JTextField cover textbox
+   * @param description JTextField description textbox
+   * @param date JTextField date textbox
+   */
     private static void clear(JTextField title, JTextField author, 
     JTextField cover, JTextField description, JTextField date) {
         title.setText(null);

@@ -12,7 +12,7 @@ import java.awt.FontMetrics;
  * Description: Book information page of library
  *
  * @author (Amy Vier)
- * @version (September 29, 2023)
+ * @version (September 30, 2023)
  */
 public class BookInformation {
 
@@ -52,8 +52,12 @@ public class BookInformation {
         authors.setContentType("text/plain");
         authors.setText(bookInfo.getAuthors());
         authors.setEditable(false);
-        window.add(authors);
-        authors.setBounds(300, 40, 100, 50);
+
+        JScrollPane authors_scroll = new JScrollPane(authors,
+                JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        window.add(authors_scroll);
+        authors_scroll.setBounds(300, 40, 100, 50);
 
         JLabel date = new JLabel(bookInfo.getPublishDate());
         date.setBounds(200, 40, 100, 40);

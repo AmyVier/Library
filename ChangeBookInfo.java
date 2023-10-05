@@ -6,15 +6,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import java.awt.event.*;
 
-/**
- * BookInformation class
- * Description: Book information page of library
- *
- * @author (Amy Vier)
- * @version (September 30, 2023)
- */
-public class BookInformation {
-
+public class ChangeBookInfo {
+    
     private static JFrame window = new JFrame();
 
     /**
@@ -72,7 +65,7 @@ public class BookInformation {
         // go back to search window
         back.addActionListener((ActionEvent e) -> {
             window.dispose();
-            Search.setVisible();
+            ChangeCatalogue.setVisible();
         });
     }
 
@@ -82,5 +75,4 @@ public class BookInformation {
     public static void setVisible() {
         window.setVisible(true);
     }
-
 }

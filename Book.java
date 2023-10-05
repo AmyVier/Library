@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.TreeSet;
 
 /**
  * Book class
@@ -11,11 +10,11 @@ import java.util.TreeSet;
 public class Book implements Serializable{
 
     //default info
-    private String title = "";
-    private String description = "";
-    private TreeSet <String> authors = new TreeSet<>();
+    private String title = "No Title";
+    private String description = "No Description";
+    private String authors = "Authors Unknown";
     private String picture = "";
-    private String publishDate = "";
+    private String publishDate = "Publish Date Unknown";
 
     /**
      * Creates book with default title, etc.
@@ -25,24 +24,11 @@ public class Book implements Serializable{
     }
 
     /**
-     * Creates book with title.
-     * 
-     * @param title String title
-     */
-    public Book(String title) {
-        this.title = title;
-    }
-
-    /**
      * gets title.
      * 
      * @return String title
      */
     public String getTitle () {
-        if (this.title.length() == 0) {
-            return "No Title";
-        }
-
         return this.title;
     }
 
@@ -52,10 +38,6 @@ public class Book implements Serializable{
      * @return String description
      */
     public String getDescription () {
-        if (this.description.length() == 0) {
-            return "No Description";
-        }
-
         return this.description;
     }
 
@@ -78,31 +60,16 @@ public class Book implements Serializable{
      * @return String publish date
      */
     public String getPublishDate () {
-        if (this.publishDate.length() > 0) {
-            return "Date Unknown";
-        }
-
         return this.publishDate;
     }
 
     /**
      * gets authors.
      * 
-     * @return TreeSet authors
+     * @return authors
      */
     public String getAuthors () {
-        String author_list_string = "";
-
-        if (this.authors.size() == 0) {
-            return "No Author";
-        }
-
-        for (String name : this.authors) {
-            author_list_string = author_list_string + name + ", ";
-        }
-
-        return author_list_string.substring(0, 
-        author_list_string.length() - 2);
+        return  this.authors;
     }
 
      /**
@@ -146,9 +113,7 @@ public class Book implements Serializable{
      * 
      * @param name String author name
      */
-    public void addAuthors (String name) {
-        if (name.length() > 0) {
-            this.authors.add(name);
-        }
+    public void setAuthors (String authors) {
+        this.authors = authors;
     }
 }

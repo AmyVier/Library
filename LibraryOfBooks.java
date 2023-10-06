@@ -34,6 +34,10 @@ public class LibraryOfBooks implements Serializable, Cloneable {
         books.add(book);
     }
 
+    public void removeBook(Book book) {
+        books.remove(book);
+    }
+
     /**
      * clones LibraryOfBooks class
      * 

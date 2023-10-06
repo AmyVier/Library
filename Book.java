@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Objects;
 
 /**
  * Book class
@@ -115,5 +116,40 @@ public class Book implements Serializable{
      */
     public void setAuthors (String authors) {
         this.authors = authors;
+    }
+
+    @Override
+    public boolean equals(Object compare) {
+        if (!(compare instanceof Book)) {
+            return false;
+        }
+
+        if (!(((Book)compare).getTitle().equals(this.title))) {
+            return false;
+        }
+
+        if (!(((Book)compare).getAuthors().equals(this.authors))) {
+            return false;
+        }
+
+        if (!(((Book)compare).getDescription().equals(this.description))) {
+            return false;
+        }
+
+        if (!(((Book)compare).getPicture().equals(this.picture))) {
+            return false;
+        }
+
+        if (!(((Book)compare).getPublishDate().equals(this.publishDate))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.authors, this.description, this.picture, 
+        this.publishDate, this.title);
     }
 }

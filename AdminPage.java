@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import java.awt.event.*;
 
 /**
  * AdminPage class
@@ -21,9 +22,6 @@ public class AdminPage {
    */
     public static void create() {
         window.setLayout(null);
-
-        // you can close this application from admin page
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // initializing window components
         JButton back = new JButton("Go Back");
@@ -73,6 +71,13 @@ public class AdminPage {
         window.setVisible(true);
         window.setSize(800,800);
 
+        window.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent ev) {
+                LibraryOfBooks.save();
+                PasswordManager.save();
+                System.exit(0);
+            }
+        });
 
         //add book data
         add.addActionListener((ActionEvent e) -> {

@@ -26,9 +26,6 @@ public class BookInformation {
         window.setTitle(bookInfo.getTitle());
         window.setLayout(null);
 
-        // you can close this application from admin page
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         // initializing window components
         ImageIcon cover = new ImageIcon(bookInfo.getPicture());
         JLabel cover_label = new JLabel(cover);
@@ -68,6 +65,14 @@ public class BookInformation {
 
         window.setVisible(true);
         window.setSize(800, 800);
+
+        window.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent ev) {
+                LibraryOfBooks.save();
+                PasswordManager.save();
+                System.exit(0);
+            }
+        });
 
         // go back to search window
         back.addActionListener((ActionEvent e) -> {

@@ -15,9 +15,6 @@ public class CreateUser {
      * Creates User Creation Page of library to users.
      */
     public static void create() {
-        // you can close this application from admin page
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
         window.setLayout(null);
 
         // initializing window components
@@ -43,6 +40,14 @@ public class CreateUser {
 
         window.setSize(800, 800);
         window.setVisible(true);
+
+        window.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent ev) {
+                LibraryOfBooks.save();
+                PasswordManager.save();
+                System.exit(0);
+            }
+        });
 
         // enter right username/password, create user, else redo input
         create.addActionListener((ActionEvent e) -> {

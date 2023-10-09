@@ -22,9 +22,6 @@ public class Search {
     public static void create() {
         window.setLayout(null);
 
-        //you can close this application from search window
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         // initializing window components
         JButton back = new JButton("Go Back");
         window.add(back);
@@ -36,6 +33,14 @@ public class Search {
 
         window.setVisible(true);
         window.setSize(800, 800);
+
+        window.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent ev) {
+                LibraryOfBooks.save();
+                PasswordManager.save();
+                System.exit(0);
+            }
+        });
 
         back.addActionListener((ActionEvent e) -> {
             window.dispose();

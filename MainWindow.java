@@ -42,9 +42,6 @@ public class MainWindow {
     window.setSize(800, 800);
     window.setVisible(true);
 
-    // you can close this application from main window
-    window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     // for debugging
     //users.addUser("AmyV", "LOL");
 
@@ -54,10 +51,19 @@ public class MainWindow {
     PasswordManager.initialize();
     LibraryOfBooks.initialize();
 
+    window.addWindowListener(new WindowAdapter() {
+      public void windowClosing(WindowEvent ev) {
+          LibraryOfBooks.save();
+          PasswordManager.save();
+          System.exit(0);
+      }
+  });
+  
+
     // enter right username/password, go into search window, else redo input
     logIn.addActionListener((ActionEvent e) -> {
       if (PasswordManager.findUser(username.getText(), password.getText())) {
-        window.dispose();
+        window.setVisible(false);
         Search.create();
         clear(username, password);
       } else {
@@ -67,14 +73,14 @@ public class MainWindow {
 
     // enter user creation page
     newUser.addActionListener((ActionEvent e) -> {
-      window.dispose();
+      window.setVisible(false);
       CreateUser.create();
       clear(username, password);
     });
 
     // enter admin page
     admin.addActionListener((ActionEvent e) -> {
-      window.dispose();
+      window.setVisible(false);
       AdminPage.create();
       clear(username, password);
     });

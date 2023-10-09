@@ -11,7 +11,6 @@ import java.awt.event.*;
 public class MainWindow {
 
   private static JFrame window = new JFrame("Menu");
-  private static PasswordManager users = null; //where user data is stores
 
   /**
    * Creates Main Window of library for user login.
@@ -49,11 +48,15 @@ public class MainWindow {
     // for debugging
     //users.addUser("AmyV", "LOL");
 
-    update();
+    //update();
+
+    // initialize saved data
+    PasswordManager.initialize();
+    LibraryOfBooks.initialize();
 
     // enter right username/password, go into search window, else redo input
     logIn.addActionListener((ActionEvent e) -> {
-      if (users.findUser(username.getText(), password.getText())) {
+      if (PasswordManager.findUser(username.getText(), password.getText())) {
         window.dispose();
         Search.create();
         clear(username, password);
@@ -86,14 +89,6 @@ public class MainWindow {
   private static void clear(JTextField username, JTextField password) {
     username.setText(null);
     password.setText(null);
-  }
-
-  /**
-     * updates user data
-     */
-    public static void update() {
-      SavedUserData.initialize();
-      users = SavedUserData.getUsers();
   }
 
   /**

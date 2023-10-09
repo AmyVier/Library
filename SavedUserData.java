@@ -3,6 +3,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashMap;
+
+@SuppressWarnings("unchecked")
 
 /**
  * SavedUserData class
@@ -14,40 +17,25 @@ import java.io.ObjectOutputStream;
 public class SavedUserData {
 
     // data of users
-    private static PasswordManager allUsers = null;
-
-    /**
-     * gets data of users
-     * 
-     * @return data of users in class PasswordManager
-     */
-    public static PasswordManager getUsers() {
-        if (allUsers == null) {
-            return new PasswordManager();
-        }
-
-        return allUsers.clone();
-    }
+   protected static HashMap<String, String> username_password = new HashMap<>();
 
     /**
      * saves user data
      * 
      * @param updated PasswordManager user data to be saved
      */
-    public static void save(PasswordManager updated) {
+    public static void save() {
         try {
             FileOutputStream file = new FileOutputStream("UserData.ser");
             ObjectOutputStream out = new ObjectOutputStream(file);
 
-            out.writeObject(updated);
+            out.writeObject(username_password);
 
             out.close();
             file.close();
         } catch (IOException ex) {
             System.out.println("IOException is caught in save " + ex);
         }
-
-        allUsers = updated.clone();
     }
 
     /**
@@ -58,7 +46,7 @@ public class SavedUserData {
             FileInputStream file = new FileInputStream("UserData.ser");
             ObjectInputStream in = new ObjectInputStream(file);
 
-            allUsers = (PasswordManager) in.readObject();
+            username_password = (HashMap<String, String>) in.readObject();
 
             in.close();
             file.close();

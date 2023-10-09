@@ -3,6 +3,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashSet;
+
+@SuppressWarnings("unchecked")
 
 /**
  * SavedBookData class
@@ -13,40 +16,25 @@ import java.io.ObjectOutputStream;
  */
 public class SavedBookData {
     //data of books
-    private static LibraryOfBooks allBooks = null;
-
-    /**
-   * gets data of books
-   * 
-   * @return data of books in class LibraryOfBooks
-   */
-    public static LibraryOfBooks getBooks() {
-        if (allBooks == null) {
-            return new LibraryOfBooks();
-        }
-        
-        return allBooks.clone();
-    }
+    protected static HashSet<Book> books = new HashSet<>(); // book set
 
     /**
    * saves book data
    * 
    * @param updated LibraryOfBooks data of books to be saved
    */
-    public static void save(LibraryOfBooks updated) {
+    public static void save() {
         try {
             FileOutputStream file = new FileOutputStream("BookData.ser");
             ObjectOutputStream out = new ObjectOutputStream(file);
 
-            out.writeObject(updated);
+            out.writeObject(books);
 
             out.close();
             file.close();
         } catch(IOException ex) {
             System.out.println("IOException is caught in save " + ex);
         }
-
-        allBooks = updated.clone();
     }
 
     /**
@@ -57,7 +45,7 @@ public class SavedBookData {
             FileInputStream file = new FileInputStream("BookData.ser");
             ObjectInputStream in = new ObjectInputStream(file);
              
-            allBooks = (LibraryOfBooks)in.readObject();
+            books = (HashSet<Book>)in.readObject();
              
             in.close();
             file.close();

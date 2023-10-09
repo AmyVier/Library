@@ -73,9 +73,6 @@ public class AdminPage {
         window.setVisible(true);
         window.setSize(800,800);
 
-        //initialize book data and retrieve data for changes
-        SavedBookData.initialize();
-        LibraryOfBooks updated_catalogue = SavedBookData.getBooks(); // book data
 
         //add book data
         add.addActionListener((ActionEvent e) -> {
@@ -101,16 +98,13 @@ public class AdminPage {
                 newBook.setAuthors(author.getText());
             }
 
-            updated_catalogue.addBook(newBook);
+            LibraryOfBooks.addBook(newBook);
 
             clear(title, author, cover, description, date);
         });
 
          //save all changes when go back to main window
         back.addActionListener((ActionEvent e) -> {
-            SavedBookData.save(updated_catalogue);
-            Search.update(); //updata data for Search browser
-            ChangeCatalogue.update(); //updata data for Search browser
             window.dispose();
             MainWindow.setVisible();
 
@@ -119,9 +113,6 @@ public class AdminPage {
 
         //save all changes when go to change window
         change.addActionListener((ActionEvent e) -> {
-            SavedBookData.save(updated_catalogue);
-            Search.update(); //updata data for Search browser
-            ChangeCatalogue.update(); //updata data for Search browser
             window.dispose();
             ChangeCatalogue.create();
 

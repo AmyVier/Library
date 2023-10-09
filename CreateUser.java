@@ -44,14 +44,10 @@ public class CreateUser {
         window.setSize(800, 800);
         window.setVisible(true);
 
-        //initialize book data and retrieve data for changes
-        SavedUserData.initialize();
-        PasswordManager updated_user_list = SavedUserData.getUsers(); // book data
-
         // enter right username/password, create user, else redo input
         create.addActionListener((ActionEvent e) -> {
-            if (updated_user_list.findUsername(username.getText()) == false) {
-                updated_user_list.addUser(username.getText(), password.getText());
+            if (PasswordManager.findUsername(username.getText()) == false) {
+                PasswordManager.addUser(username.getText(), password.getText());
                 clear(username, password, status);
             } else {
                 status.setText("Username already exists");
@@ -60,11 +56,10 @@ public class CreateUser {
 
         //save all changes when go back to main window
         back.addActionListener((ActionEvent e) -> {
-            SavedUserData.save(updated_user_list);
+            //SavedUserData.save(updated_user_list);
             //Search.update(); //updata data for Search browser
             window.dispose();
             MainWindow.setVisible();
-            MainWindow.update();
 
             clear(username, password, status);
         });

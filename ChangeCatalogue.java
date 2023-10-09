@@ -7,8 +7,6 @@ import javax.swing.JTextField;
 
 public class ChangeCatalogue {
     private static JFrame window = new JFrame("Change Catalogue");
-    private static LibraryOfBooks books = null; //where book data is stores
-    //private static HashSet<Book> bookList = null; //titles directing to book data
     private static ArrayList<JButton> buttons = new ArrayList<>(); //buttons directing to book windows
     private static ArrayList<JButton> remove_buttons = new ArrayList<>(); 
     //buttons directing to book windows
@@ -31,9 +29,6 @@ public class ChangeCatalogue {
 
         window.setVisible(true);
         window.setSize(800, 800);
-
-        //update book data (if some books were added/removed)
-        update();
 
         back.addActionListener((ActionEvent e) -> {
             window.dispose();
@@ -60,7 +55,7 @@ public class ChangeCatalogue {
             if (search_title.getText().length() > 0) {
 
                 //look through every title
-                for (Book book : books.getBooks()) {
+                for (Book book : LibraryOfBooks.getBooks()) {
 
                     //if the title is partially similar show title
                     if (book.getTitle().length() >= search_title.getText().length() &&
@@ -84,8 +79,7 @@ public class ChangeCatalogue {
 
                         remove_buttons.get(i).addActionListener((ActionEvent l) -> {
                             remove(number, remove_buttons, buttons);
-                            books.removeBook(book);
-                            SavedBookData.save(books);
+                            LibraryOfBooks.removeBook(book);
                         });
 
                         //every button is 40 pixles down from one another
@@ -131,14 +125,6 @@ public class ChangeCatalogue {
         }
 
         search_title.setText(null);
-    }
-
-    /**
-     * updates book data
-     */
-    public static void update() {
-        SavedBookData.initialize();
-        books = SavedBookData.getBooks();
     }
 
      /**

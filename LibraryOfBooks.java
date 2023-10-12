@@ -5,7 +5,7 @@ import java.util.HashSet;
  * Description: stores books
  *
  * @author (Amy Vier)
- * @version (September 29, 2023)
+ * @version (October 12, 2023)
  */
 public class LibraryOfBooks extends SavedBookData {
     /**
@@ -31,6 +31,11 @@ public class LibraryOfBooks extends SavedBookData {
         books.add(book);
     }
 
+    /**
+     * remove book
+     * 
+     * @param book Book
+     */
     public static void removeBook(Book book) {
         books.remove(book);
     }

@@ -3,7 +3,7 @@
  * Description: manages passwords
  *
  * @author (Amy Vier)
- * @version (September 29, 2023)
+ * @version (October 12, 2023)
  */
 public class PasswordManager extends SavedUserData {
     

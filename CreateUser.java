@@ -6,7 +6,7 @@ import java.awt.event.*;
  * Description: User Creation Page of library
  *
  * @author (Amy Vier)
- * @version (September 29, 2023)
+ * @version (October 12, 2023)
  */
 public class CreateUser {
     private static JFrame window = new JFrame("Password and Username Creator");
@@ -43,6 +43,7 @@ public class CreateUser {
 
         window.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent ev) {
+                // save all data before exiting
                 LibraryOfBooks.save();
                 PasswordManager.save();
                 System.exit(0);
@@ -59,10 +60,8 @@ public class CreateUser {
              }
         });
 
-        //save all changes when go back to main window
+        //Go back to main window
         back.addActionListener((ActionEvent e) -> {
-            //SavedUserData.save(updated_user_list);
-            //Search.update(); //updata data for Search browser
             window.dispose();
             MainWindow.setVisible();
 

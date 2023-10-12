@@ -6,12 +6,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import java.awt.event.*;
 
+/**
+ * ChangeBookInfo class
+ * Description: Change book information page of library
+ *
+ * @author (Amy Vier)
+ * @version (October 12, 2023)
+ */
 public class ChangeBookInfo {
     
     private static JFrame window = new JFrame();
 
     /**
-     * Creates a book information page to display book info
+     * Creates a change book  information page to display book info
      * 
      * @param bookInfo Book book information
      */
@@ -61,6 +68,7 @@ public class ChangeBookInfo {
 
         window.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent ev) {
+                // save all data before exiting
                 LibraryOfBooks.save();
                 PasswordManager.save();
                 System.exit(0);

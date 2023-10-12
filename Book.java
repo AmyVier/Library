@@ -6,7 +6,7 @@ import java.util.Objects;
  * Description: stores book info
  *
  * @author (Amy Vier)
- * @version (September 29, 2023)
+ * @version (October 12, 2023)
  */
 public class Book implements Serializable{
 

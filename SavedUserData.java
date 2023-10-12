@@ -5,14 +5,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings("unchecked") // warning shows when getting saved hashmap data from ser file
 
 /**
  * SavedUserData class
  * Description: retrieves and saves user data
  *
  * @author (Amy Vier)
- * @version (September 29, 2023)
+ * @version (October 12, 2023)
  */
 public class SavedUserData {
 

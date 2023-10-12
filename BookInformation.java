@@ -11,7 +11,7 @@ import java.awt.event.*;
  * Description: Book information page of library
  *
  * @author (Amy Vier)
- * @version (September 30, 2023)
+ * @version (October 12, 2023)
  */
 public class BookInformation {
 
@@ -68,6 +68,7 @@ public class BookInformation {
 
         window.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent ev) {
+                // save all data before exiting
                 LibraryOfBooks.save();
                 PasswordManager.save();
                 System.exit(0);

@@ -5,14 +5,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashSet;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings("unchecked") // warning shows when getting saved hashset data from ser file
 
 /**
  * SavedBookData class
  * Description: retrieves and saves book data
  *
  * @author (Amy Vier)
- * @version (September 29, 2023)
+ * @version (October 12, 2023)
  */
 public class SavedBookData {
     //data of books

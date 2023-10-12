@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Description: Search Window of library
  *
  * @author (Amy Vier)
- * @version (September 29, 2023)
+ * @version (October 12, 2023)
  */
 public class Search {
 
@@ -36,6 +36,7 @@ public class Search {
 
         window.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent ev) {
+                // save all data before exiting
                 LibraryOfBooks.save();
                 PasswordManager.save();
                 System.exit(0);
@@ -58,7 +59,7 @@ public class Search {
             //show changes to the window (if some buttons were removed)
             window.repaint();
 
-            int i = 0;// location of button in terms of y axis
+            int book_index = 0;// location of button in terms of y axis
 
             //if there is input look for seach results
             if (search_title.getText().length() > 0) {
@@ -72,18 +73,19 @@ public class Search {
                             equalsIgnoreCase(search_title.getText())) {
 
                         buttons.add(new JButton(book.getTitle()));
-                        window.add(buttons.get(i));
+                        window.add(buttons.get(book_index));
 
                         //add a book window
-                        buttons.get(i).addActionListener((ActionEvent l) -> {
+                        buttons.get(book_index).addActionListener((ActionEvent l) -> {
                             window.setVisible(false);
                             BookInformation.create(book); // create window based on book info
                             clear(search_title);
                         });
 
                         //every button is 40 pixles down from one another
-                        buttons.get(i++).setBounds(350, i * 40, 100, 40);
+                        buttons.get(book_index).setBounds(350, (book_index + 1)* 40, 100, 40);
 
+                        book_index++;
                     }
                 }
             }

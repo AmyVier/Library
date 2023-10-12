@@ -1,6 +1,13 @@
 import javax.swing.JTextPane;
 import java.awt.FontMetrics;
 
+/**
+ * JTextPaneFormat class
+ * Description: wraps and gets text from JTextPane
+ *
+ * @author (Amy Vier)
+ * @version (October 12, 2023)
+ */
 public class JTextPaneFormat {
 
     /**

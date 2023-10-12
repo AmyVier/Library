@@ -1,10 +1,16 @@
 import java.util.ArrayList;
-//import java.util.HashSet;
 import java.awt.event.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+/**
+ * ChangeCatalogue class
+ * Description: Change Catalogue Page of library
+ *
+ * @author (Amy Vier)
+ * @version (October 12, 2023)
+ */
 public class ChangeCatalogue {
     private static JFrame window = new JFrame("Change Catalogue");
     private static ArrayList<JButton> buttons = new ArrayList<>(); //buttons directing to book windows
@@ -12,6 +18,9 @@ public class ChangeCatalogue {
     //buttons directing to book windows
 
 
+    /**
+   * Creates Change Catalogue Page of library to remove books.
+   */
     public static void create() { 
         window.setLayout(null);
 
@@ -29,6 +38,7 @@ public class ChangeCatalogue {
 
         window.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent ev) {
+                // save all data before exiting
                 LibraryOfBooks.save();
                 PasswordManager.save();
                 System.exit(0);
@@ -54,7 +64,7 @@ public class ChangeCatalogue {
             //show changes to the window (if some buttons were removed)
             window.repaint();
 
-            int i = 0;// location of button in terms of y axis
+            int book_index = 0;// location of button in terms of y axis
 
             //if there is input look for seach results
             if (search_title.getText().length() > 0) {
@@ -68,30 +78,30 @@ public class ChangeCatalogue {
                             equalsIgnoreCase(search_title.getText())) {
 
                         buttons.add(new JButton(book.getTitle()));
-                        window.add(buttons.get(i));
+                        window.add(buttons.get(book_index));
 
                         remove_buttons.add(new JButton("remove"));
-                        window.add(remove_buttons.get(i));
+                        window.add(remove_buttons.get(book_index));
 
                         //add a book window
-                        buttons.get(i).addActionListener((ActionEvent l) -> {
+                        buttons.get(book_index).addActionListener((ActionEvent l) -> {
                             window.setVisible(false);
                             ChangeBookInfo.create(book); // create window based on book info
                             clear(search_title);
                         });
 
-                        final int number = i;
+                        final int number = book_index;
 
-                        remove_buttons.get(i).addActionListener((ActionEvent l) -> {
+                        remove_buttons.get(book_index).addActionListener((ActionEvent l) -> {
                             remove(number, remove_buttons, buttons);
                             LibraryOfBooks.removeBook(book);
                         });
 
                         //every button is 40 pixles down from one another
-                        buttons.get(i).setBounds(350, (i + 1) * 40, 100, 40);
-                        remove_buttons.get(i).setBounds(500, (i + 1) * 40, 100, 40);
+                        buttons.get(book_index).setBounds(350, (book_index + 1) * 40, 100, 40);
+                        remove_buttons.get(book_index).setBounds(500, (book_index + 1) * 40, 100, 40);
 
-                        i++;
+                        book_index++;
 
                     }
                 }
@@ -99,6 +109,13 @@ public class ChangeCatalogue {
         });
     }
 
+    /**
+     * remove all search results and text in the seach bar
+     * 
+     * @param index int index of the button being removed
+     * @param buttons ArrayList<JButton> array of buttons redirecting to book information
+     * @param remove_buttons ArrayList<JButton> array of buttons to remove books 
+     */
     private static void remove (int index, ArrayList<JButton> buttons, 
     ArrayList<JButton> remove_buttons) {
         window.remove(buttons.get(index));

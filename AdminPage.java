@@ -1,4 +1,3 @@
-import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -11,7 +10,7 @@ import java.awt.event.*;
  * Description: Admin Page of library
  *
  * @author (Amy Vier)
- * @version (September 29, 2023)
+ * @version (October 12, 2023)
  */
 public class AdminPage {
 
@@ -73,6 +72,7 @@ public class AdminPage {
 
         window.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent ev) {
+                // save all data before exiting
                 LibraryOfBooks.save();
                 PasswordManager.save();
                 System.exit(0);
@@ -108,7 +108,7 @@ public class AdminPage {
             clear(title, author, cover, description, date);
         });
 
-         //save all changes when go back to main window
+         //Go back to main window
         back.addActionListener((ActionEvent e) -> {
             window.dispose();
             MainWindow.setVisible();
@@ -116,7 +116,7 @@ public class AdminPage {
             clear(title, author, cover, description, date);
         });
 
-        //save all changes when go to change window
+        //Go to change window
         change.addActionListener((ActionEvent e) -> {
             window.dispose();
             ChangeCatalogue.create();

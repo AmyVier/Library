@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.awt.event.*;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  * ChangeCatalogue class
@@ -14,9 +12,8 @@ import javax.swing.JTextField;
 public class ChangeCatalogue {
     private static JFrame window = new JFrame("Change Catalogue");
     private static ArrayList<JButton> buttons = new ArrayList<>(); //buttons directing to book windows
-    private static ArrayList<JButton> remove_buttons = new ArrayList<>(); 
-    //buttons directing to book windows
-
+    //list of array containing remove buttons
+    private static ArrayList<JButton> remove_buttons = new ArrayList<>();  
 
     /**
    * Creates Change Catalogue Page of library to remove books.

@@ -20,7 +20,7 @@ public class JTextPaneFormat {
     public static void fitText(JTextPane textPane, String text,
             int width) {
         FontMetrics metrics = textPane.getFontMetrics(textPane.getFont());
-        double calculation = 0; // for calculations recuiring decimals
+        double calculation = 0; // for calculations requiring decimals
         int before_cut = 0; //character before the text splits 
         int original_before_cut = 0; //character before the text splits (changes less frequently)
         String sentence = ""; //one line of text

@@ -118,6 +118,11 @@ public class Book implements Serializable{
         this.authors = authors;
     }
 
+    /**
+     * checks if object is equal to book.
+     * 
+     * @param compare Object another book
+     */
     @Override
     public boolean equals(Object compare) {
         if (!(compare instanceof Book)) {
@@ -147,6 +152,9 @@ public class Book implements Serializable{
         return true;
     }
 
+    /**
+     * Provides hashcode to Book.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(this.authors, this.description, this.picture, 

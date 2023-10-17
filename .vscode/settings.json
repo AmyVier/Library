@@ -1,0 +1,5 @@
+{
+  "maven.executable.path": "mvn",
+  "maven.view": "hierarchical",
+  "java.configuration.updateBuildConfiguration": "interactive"
+}

@@ -18,6 +18,7 @@ public class Book implements Serializable {
     private String authors = "Authors Unknown";
     private String picture = "";
     private String publishDate = "Publish Date Unknown";
+    // private String onHold = "";
 
     /**
      * Creates book with default title, etc.

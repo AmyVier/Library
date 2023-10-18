@@ -3,6 +3,7 @@
 /Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/MainWindow.java
 /Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/Book.java
 /Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/JTextPaneFormat.java
+/Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/Report.java
 /Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/ChangeCatalogue.java
 /Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/SavedUserData.java
 /Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/CreateUser.java
@@ -10,5 +11,6 @@
 /Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/Search.java
 /Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/LibraryOfBooks.java
 /Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/BookInformation.java
+/Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/OnHold.java
 /Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/SavedBookData.java
 /Users/amyvier/Desktop/Code/Java-Projects/Library/src/main/java/library/PasswordManager.java

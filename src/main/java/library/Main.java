@@ -9,6 +9,7 @@ package library;
  */
 public class Main {
     public static void main(String[] args) {
-        MainWindow.create();
+        // MainWindow.create();
+        Report.createReport();
     }
 }
